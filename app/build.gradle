@@ -15,6 +15,9 @@ android {
         targetSdk 31
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "MARVEL_API_PUBLIC_KEY", '"9e277fbe77d1a2bbf56cfece8544ac74"'
+        buildConfigField "String", "MARVEL_API_PRIVATE_KEY", '"3d78eada789f5adb7bf091a9d39f4d8797a1b6b0"'
     }
 
     buildTypes {
@@ -50,6 +53,7 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"
     implementation "com.squareup.retrofit2:converter-scalars:$gson_converter_version"
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version")
 
     // Gson
     implementation "com.google.code.gson:gson:$gson_version"
