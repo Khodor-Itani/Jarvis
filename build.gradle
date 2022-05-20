@@ -2,6 +2,7 @@ buildscript {
 
     ext {
         recyclerview_version = "1.2.1"
+        recyclerview_animators_version = "4.0.2"
         retrofit_version = "2.9.0"
         gson_converter_version = "2.9.0"
         okhttp_logging_version = "4.9.3"
@@ -10,6 +11,7 @@ buildscript {
         hilt_version = "2.38.1"
         lifecycle_ktx_version = "2.4.1"
         fragment_ktx_version = "1.4.1"
+        coil_version="2.1.0"
         lottie_version = "3.6.1"
     }
 

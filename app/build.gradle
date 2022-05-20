@@ -48,6 +48,7 @@ dependencies {
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+    implementation "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
 
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -65,6 +66,9 @@ dependencies {
     // Dagger Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    // Coil
+    implementation "io.coil-kt:coil:$coil_version"
 
     // Lottie
     implementation "com.airbnb.android:lottie:$lottie_version"

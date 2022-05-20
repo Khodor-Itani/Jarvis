@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="java.util.List"/>
-        <import type="com.kdz.jarvis.network.models.MarvelCharacter"/>
         <variable
-            name="marvelCharacters"
-            type="List&lt;MarvelCharacter>" />
+            type="com.kdz.jarvis.ui.characterlist.CharacterListViewModel"
+            name="viewModel"
+            />
     </data>
     
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,9 +15,15 @@
 
         <com.kdz.jarvis.ui.characterlist.CharacterListView
             android:id="@+id/characterListView"
-            app:marvelCharacters="@{marvelCharacters}"
+            app:marvelCharacters="@{viewModel.characters}"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <com.kdz.jarvis.ui.common.LoadingView
+            android:id="@+id/loadingView"
+            app:resource="@{viewModel.characters}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

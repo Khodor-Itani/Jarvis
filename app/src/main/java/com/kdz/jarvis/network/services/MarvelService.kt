@@ -11,7 +11,7 @@ interface MarvelService {
 
     @GET("characters")
     suspend fun getCharacters(
-        @Query("limit") limit: Int = 1
+        @Query("limit") limit: Int = 20
     ): NetworkResult<BaseDataWrapper<MarvelCharacter>>
 
     @GET("characters/{characterId}")

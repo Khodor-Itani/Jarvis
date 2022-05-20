@@ -5,10 +5,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.kdz.jarvis.databinding.CellCharacterBinding
 import com.kdz.jarvis.network.models.MarvelCharacter
+import jp.wasabeef.recyclerview.animators.FadeInUpAnimator
 
 class CharacterListView
 @JvmOverloads constructor(
@@ -24,7 +27,10 @@ class CharacterListView
         }
 
     init {
+        itemAnimator = FadeInUpAnimator()
+        layoutManager = LinearLayoutManager(context)
         adapter = CharacterAdapter()
+        addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
 }
 
@@ -33,14 +39,13 @@ private class CharacterAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = CellCharacterBinding.inflate(layoutInflater)
+        val binding = CellCharacterBinding.inflate(layoutInflater, parent, false)
         return CharacterViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) =
-        with(holder.binding) {
-            val character = getItem(position) ?: return@with
-        }
+    override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
+        holder.binding.marvelCharacter = getItem(position) ?: return
+    }
 }
 
 private class CharacterViewHolder(
@@ -48,7 +53,9 @@ private class CharacterViewHolder(
 ) : RecyclerView.ViewHolder(binding.root)
 
 private class CharacterDiffCallback : DiffUtil.ItemCallback<MarvelCharacter>() {
-    override fun areItemsTheSame(oldItem: MarvelCharacter, newItem: MarvelCharacter) = oldItem.id == newItem.id
+    override fun areItemsTheSame(oldItem: MarvelCharacter, newItem: MarvelCharacter): Boolean {
+        return oldItem.id == newItem.id
+    }
 
     override fun areContentsTheSame(oldItem: MarvelCharacter, newItem: MarvelCharacter): Boolean {
         return areItemsTheSame(oldItem, newItem)
