@@ -1,10 +1,11 @@
-package com.kdz.jarvis
+package com.kdz.jarvis.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.airbnb.lottie.LottieAnimationView
+import com.kdz.jarvis.R
 import com.kdz.jarvis.extensions.applyTaskDescription
 import com.kdz.jarvis.extensions.doOnAnimationEnd
 

@@ -1,6 +1,6 @@
 package com.kdz.jarvis.network.services
 
-import com.kdz.jarvis.network.models.Character
+import com.kdz.jarvis.network.models.MarvelCharacter
 import com.kdz.jarvis.network.models.wrappers.BaseDataWrapper
 import com.kdz.jarvis.network.result.NetworkResult
 import retrofit2.http.GET
@@ -12,12 +12,12 @@ interface MarvelService {
     @GET("characters")
     suspend fun getCharacters(
         @Query("limit") limit: Int = 1
-    ): NetworkResult<BaseDataWrapper<Character>>
+    ): NetworkResult<BaseDataWrapper<MarvelCharacter>>
 
     @GET("characters/{characterId}")
     suspend fun getCharacter(
         @Path("characterId") characterId: String
-    ): NetworkResult<BaseDataWrapper<Character>>
+    ): NetworkResult<BaseDataWrapper<MarvelCharacter>>
 
     @GET("characters/{characterId}/comics")
     suspend fun getComics(

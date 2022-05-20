@@ -1,6 +1,6 @@
 package com.kdz.jarvis.network.models
 
-data class Character(
+data class MarvelCharacter(
     val comics: Comics,
     val description: String,
     val events: Events,
