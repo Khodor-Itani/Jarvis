@@ -28,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_character_name"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{characterName}"
@@ -38,15 +39,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Wanda Maximoff" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_character_id"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/character_id_title(characterId)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textView_character_name"
-                tools:text="307194" />
+                tools:text="ID: 307194" />
 
             <androidx.constraintlayout.helper.widget.Flow
                 android:layout_width="match_parent"

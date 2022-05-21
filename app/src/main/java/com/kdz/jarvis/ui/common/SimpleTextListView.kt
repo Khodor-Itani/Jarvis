@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.TextViewCompat
+import com.google.android.material.textview.MaterialTextView
 import com.kdz.jarvis.R
 import kotlin.properties.Delegates
 
@@ -27,7 +29,7 @@ class SimpleTextListView
         removeAllViews()
 
         texts.map {
-            AppCompatTextView(context).apply {
+            MaterialTextView(context).apply {
                 text = it
             }
         }.forEachIndexed { index, textView ->

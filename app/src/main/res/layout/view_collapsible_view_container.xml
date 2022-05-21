@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/textView_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
         app:layout_constraintBottom_toBottomOf="@id/imageView_collapse_indicator"
         app:layout_constraintEnd_toStartOf="@id/imageView_collapse_indicator"
         app:layout_constraintStart_toStartOf="parent"

@@ -3,16 +3,25 @@ package com.kdz.jarvis.ui.common
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.view.View.OnClickListener
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isGone
+import androidx.transition.ChangeBounds
+import androidx.transition.Fade
 import androidx.transition.TransitionManager
+import androidx.transition.TransitionSet
 import com.kdz.jarvis.R
 
-private val IGNORED_VIEW_IDS = arrayOf(R.id.textView_title, R.id.imageView_collapse_indicator, R.id.constraintLayout_container, R.id.barrier_title_bottom)
+private val IGNORED_VIEW_IDS = arrayOf(
+    R.id.textView_title,
+    R.id.imageView_collapse_indicator,
+    R.id.constraintLayout_container,
+    R.id.barrier_title_bottom
+)
 
 class CollapsibleViewContainer
 @JvmOverloads constructor(
@@ -49,10 +58,11 @@ class CollapsibleViewContainer
 
     private fun obtainAttributes(attrs: AttributeSet?) {
         context.theme.obtainStyledAttributes(
-            attrs, R.styleable.CollapsibleViewContainer, 0, 0).apply {
+            attrs, R.styleable.CollapsibleViewContainer, 0, 0
+        ).apply {
 
             try {
-                if(hasValue(R.styleable.CollapsibleViewContainer_title)) {
+                if (hasValue(R.styleable.CollapsibleViewContainer_title)) {
                     val title = getString(R.styleable.CollapsibleViewContainer_title)
                     setTitle(title ?: "")
                 }
@@ -65,7 +75,7 @@ class CollapsibleViewContainer
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {
         val childId = child?.id ?: return
 
-        if(IGNORED_VIEW_IDS.contains(childId)) {
+        if (IGNORED_VIEW_IDS.contains(childId)) {
             super.addView(child, index, params)
         } else {
             containerConstriantLayout.addView(child, index, params)
@@ -78,12 +88,19 @@ class CollapsibleViewContainer
     }
 
     fun setExpanded(isExpanded: Boolean, animated: Boolean = true) {
-        val rotation = if(isExpanded) 180F else 0F
+        val rotation = if (isExpanded) 180F else 0F
 
         collapseIndicatorImageView.animate().rotation(rotation).setDuration(300L).start()
 
-        if(animated) {
-            TransitionManager.beginDelayedTransition(this)
+        if (animated) {
+            val transitionSet = TransitionSet().apply {
+                ordering = TransitionSet.ORDERING_SEQUENTIAL
+
+                addTransition(ChangeBounds())
+                addTransition(Fade())
+            }
+
+            TransitionManager.beginDelayedTransition(parent as ViewGroup, transitionSet)
         }
         containerConstriantLayout.isGone = !isExpanded
 
