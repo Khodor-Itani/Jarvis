@@ -4,11 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.paging.CombinedLoadStates
+import androidx.paging.LoadState
+import com.google.android.material.snackbar.Snackbar
+import com.kdz.jarvis.R
 import com.kdz.jarvis.databinding.FragmentCharacterListBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class CharacterListFragment : Fragment() {
@@ -16,6 +25,10 @@ class CharacterListFragment : Fragment() {
     val viewModel: CharacterListViewModel by viewModels()
 
     lateinit var binding: FragmentCharacterListBinding
+
+    private val loadingSnackbar by lazy {
+        Snackbar.make(requireView(), R.string.character_list_loading, Snackbar.LENGTH_INDEFINITE)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,7 +42,34 @@ class CharacterListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.viewModel = viewModel
+
+        observePagedLoadingState()
+        observePagedCharacters()
     }
+
+    private fun observePagedCharacters() = lifecycleScope.launch {
+        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.characters.collectLatest {
+                binding.characterListView.submitData(it)
+            }
+        }
+    }
+
+    private fun observePagedLoadingState() = lifecycleScope.launch {
+        viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            binding.characterListView.characterAdapter?.loadStateFlow?.collect(::onCharacterLoadStatesReceived)
+        }
+    }
+
+    private fun onCharacterLoadStatesReceived(loadStates: CombinedLoadStates) {
+        if (loadStates.append is LoadState.Loading) {
+            loadingSnackbar.show()
+        } else {
+            loadingSnackbar.dismiss()
+        }
+
+        binding.loadingView.isGone = loadStates.refresh !is LoadState.Loading
+    }
+
 }

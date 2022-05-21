@@ -3,6 +3,7 @@ buildscript {
     ext {
         recyclerview_version = "1.2.1"
         recyclerview_animators_version = "4.0.2"
+        paging_version="3.1.1"
         retrofit_version = "2.9.0"
         gson_converter_version = "2.9.0"
         okhttp_logging_version = "4.9.3"

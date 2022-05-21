@@ -1,7 +1,9 @@
 package com.kdz.jarvis.repositories
 
+import androidx.paging.PagingSource
 import com.kdz.jarvis.network.models.MarvelCharacter
 import com.kdz.jarvis.network.services.MarvelService
+import com.kdz.jarvis.paging.CharacterPagingSource
 import com.kdz.jarvis.repositories.extensions.mapToRepositoryResult
 import com.kdz.jarvis.repositories.result.Resource
 import javax.inject.Inject
@@ -16,11 +18,6 @@ constructor(
     private val marvelService: MarvelService
 ) {
 
-  fun getCharacters() : Flow<Resource<List<MarvelCharacter>>> = flow {
-      emit(Resource.Loading)
-      val mappedResult = marvelService.getCharacters().mapToRepositoryResult {
-          it.data.results
-      }
-      emit(mappedResult)
-  }.flowOn(Dispatchers.IO)
+    fun characterPagingSource() = CharacterPagingSource(marvelService)
+
 }

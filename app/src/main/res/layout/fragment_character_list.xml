@@ -15,13 +15,11 @@
 
         <com.kdz.jarvis.ui.characterlist.CharacterListView
             android:id="@+id/characterListView"
-            app:marvelCharacters="@{viewModel.characters}"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
         <com.kdz.jarvis.ui.common.LoadingView
             android:id="@+id/loadingView"
-            app:resource="@{viewModel.characters}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

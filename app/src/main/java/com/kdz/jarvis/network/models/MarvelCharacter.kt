@@ -4,7 +4,7 @@ data class MarvelCharacter(
     val comics: Comics,
     val description: String,
     val events: Events,
-    val id: String,
+    val id: Int,
     val modified: String,
     val name: String,
     val resourceURI: String,

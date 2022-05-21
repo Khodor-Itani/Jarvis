@@ -50,6 +50,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "jp.wasabeef:recyclerview-animators:$recyclerview_animators_version"
 
+    // Paging
+    runtimeOnly "androidx.paging:paging-common-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
     // Networking
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$gson_converter_version"

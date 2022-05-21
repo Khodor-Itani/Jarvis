@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Jarvis</string>
+    <string name="character_list_loading">Assembling More Heroes...</string>
 </resources>
