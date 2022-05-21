@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Jarvis</string>
-    <string name="character_list_loading">Assembling More Heroes...</string>
+    <string name="character_list_loading">Assembling more Heroes…</string>
+    <string name="comics">Comics</string>
+    <string name="events">Events</string>
+    <string name="stories">Stories</string>
+    <string name="series">Series</string>
+    <string name="character_id_title">ID: %s</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.kdz.jarvis.ui.characterlist
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
+import androidx.paging.map
 import com.google.android.material.snackbar.Snackbar
 import com.kdz.jarvis.R
 import com.kdz.jarvis.databinding.FragmentCharacterListBinding
@@ -44,8 +47,18 @@ class CharacterListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.viewModel = viewModel
 
-        observePagedLoadingState()
         observePagedCharacters()
+        observePagedLoadingState()
+
+        binding.characterListView.setOnCharacterClickListener { character ->
+            val navAction =
+                CharacterListFragmentDirections.actionCharacterListFragmentToCharacterDetailsFragment(
+                    character.id,
+                    character.name
+                )
+
+            findNavController().navigate(navAction)
+        }
     }
 
     private fun observePagedCharacters() = lifecycleScope.launch {

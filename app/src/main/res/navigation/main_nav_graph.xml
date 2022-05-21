@@ -19,7 +19,8 @@
         android:name="com.kdz.jarvis.ui.characterdetails.CharacterDetailsFragment"
         tools:layout="@layout/fragment_character_details">
 
-        <argument android:name="characterId" app:argType="string"/>
+        <argument android:name="characterId" app:argType="integer"/>
+        <argument android:name="characterName" app:argType="string"/>
 
     </fragment>
 

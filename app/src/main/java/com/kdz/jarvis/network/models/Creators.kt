@@ -1,8 +1,8 @@
 package com.kdz.jarvis.network.models
 
-data class Stories(
+data class Creators(
     val available: String,
     val collectionURI: String,
-    val items: List<StoriesSummary>,
+    val items: List<CreatorSummary>,
     val returned: String
 )

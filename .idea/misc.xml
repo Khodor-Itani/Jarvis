@@ -3,11 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/.gradle/caches/transforms-3/0ee8ecf0791ba6d38a5f037ab2a586f2/transformed/coil-base-2.1.0/res/drawable/ic_100tb.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/activity_splash.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/cell_character.xml" value="0.2" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/fragment_character_details.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/fragment_character_details.xml" value="0.2825520833333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/fragment_character_list.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/layout/view_collapsible_view_container.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/Users/user/AndroidStudioProjects/Jarvis/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
       </map>

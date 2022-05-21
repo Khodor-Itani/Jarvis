@@ -1,12 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.kdz.jarvis.ui.characterdetails.CharacterDetailsViewModel" />
+
+        <variable
+            name="characterId"
+            type="String" />
+
+        <variable
+            name="characterName"
+            type="String" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView_character_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{characterName}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Wanda Maximoff" />
+
+            <TextView
+                android:id="@+id/textView_character_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{@string/character_id_title(characterId)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textView_character_name"
+                tools:text="307194" />
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:constraint_referenced_ids="collapsingContainer_comics, collapsingContainer_events, collapsingContainer_stories, collapsingContainer_series"
+                app:flow_verticalStyle="packed"
+                app:layout_constraintTop_toBottomOf="@id/textView_character_id" />
+
+            <com.kdz.jarvis.ui.common.CollapsibleViewContainer
+                android:id="@+id/collapsingContainer_comics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/comics">
+
+                <com.kdz.jarvis.ui.common.SimpleTextListView
+                    android:id="@+id/textList_comics"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:texts="@{viewModel.comics}" />
+
+            </com.kdz.jarvis.ui.common.CollapsibleViewContainer>
+
+            <com.kdz.jarvis.ui.common.CollapsibleViewContainer
+                android:id="@+id/collapsingContainer_events"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/events"
+                tools:ignore="MissingConstraints">
+
+                <com.kdz.jarvis.ui.common.SimpleTextListView
+                    android:id="@+id/textList_events"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:texts="@{viewModel.events}" />
+
+            </com.kdz.jarvis.ui.common.CollapsibleViewContainer>
+
+            <com.kdz.jarvis.ui.common.CollapsibleViewContainer
+                android:id="@+id/collapsingContainer_stories"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/stories"
+                tools:ignore="MissingConstraints">
+
+                <com.kdz.jarvis.ui.common.SimpleTextListView
+                    android:id="@+id/textList_stories"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:texts="@{viewModel.stories}" />
+
+            </com.kdz.jarvis.ui.common.CollapsibleViewContainer>
+
+            <com.kdz.jarvis.ui.common.CollapsibleViewContainer
+                android:id="@+id/collapsingContainer_series"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:title="@string/series"
+                tools:ignore="MissingConstraints">
+
+                <com.kdz.jarvis.ui.common.SimpleTextListView
+                    android:id="@+id/textList_series"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:texts="@{viewModel.series}" />
+
+            </com.kdz.jarvis.ui.common.CollapsibleViewContainer>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
 

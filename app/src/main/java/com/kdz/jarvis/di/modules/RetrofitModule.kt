@@ -2,6 +2,7 @@ package com.kdz.jarvis.di.modules
 
 import com.google.gson.Gson
 import com.kdz.jarvis.BuildConfig
+import com.kdz.jarvis.network.cache.CacheHeaderInterceptor
 import com.kdz.jarvis.network.result.NetworkResultAdapterFactory
 import com.kdz.jarvis.network.services.MarvelService
 import com.kdz.jarvis.network.signing.MarvelApiKeyGenerator
@@ -54,10 +55,13 @@ object RetrofitModule {
     fun provideOkHttpClient(
         @Named("ApiKey")
         apiKeyInterceptor: Interceptor,
+        @Named("Cache")
+        cacheHeaderInterceptor: Interceptor,
         @Named("Logging")
         loggingInterceptor: Interceptor?
     ) = OkHttpClient.Builder()
         .addInterceptor(apiKeyInterceptor)
+        .addInterceptor(cacheHeaderInterceptor)
         .apply {
             loggingInterceptor?.let(::addInterceptor)
         }
@@ -71,6 +75,9 @@ object RetrofitModule {
         null
     }
 
+    @Provides
+    @Named("Cache")
+    fun provideCacheHeaderInterceptor() : Interceptor = CacheHeaderInterceptor()
 
     @Provides
     fun provideMarvelApiProvider() = MarvelApiKeyGenerator(

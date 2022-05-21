@@ -5,4 +5,5 @@
 
     <dimen name="character_list_item_padding">12dp</dimen>
     <dimen name="character_name_start_margin">12dp</dimen>
+    <dimen name="text_spacing_vertical">12dp</dimen>
 </resources>

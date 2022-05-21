@@ -32,10 +32,16 @@ class CharacterListView
         adapter = CharacterAdapter()
         addItemDecoration(DividerItemDecoration(context, VERTICAL))
     }
+
+    fun setOnCharacterClickListener(listener: (MarvelCharacter) -> Unit) {
+        characterAdapter?.onCharacterClickListener = listener
+    }
 }
 
 class CharacterAdapter :
     PagingDataAdapter<MarvelCharacter, CharacterViewHolder>(CharacterDiffCallback()) {
+
+    var onCharacterClickListener: ((MarvelCharacter) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -44,7 +50,10 @@ class CharacterAdapter :
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
-        holder.binding.marvelCharacter = getItem(position) ?: return
+        val marvelCharacter = getItem(position) ?: return
+
+        holder.binding.marvelCharacter = marvelCharacter
+        holder.itemView.setOnClickListener { onCharacterClickListener?.invoke(marvelCharacter) }
     }
 }
 

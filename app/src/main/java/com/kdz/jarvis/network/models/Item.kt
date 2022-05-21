@@ -1,7 +1,7 @@
 package com.kdz.jarvis.network.models
 
-data class StorySummary(
+data class Item(
     val name: String,
     val resourceURI: String,
-    val type: String
+    val role: String
 )

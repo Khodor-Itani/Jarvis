@@ -11,6 +11,7 @@ import com.kdz.jarvis.R
 import com.kdz.jarvis.network.models.Thumbnail
 import com.kdz.jarvis.repositories.result.Resource
 import com.kdz.jarvis.ui.common.LoadingView
+import com.kdz.jarvis.ui.common.SimpleTextListView
 import com.kdz.jarvis.ui.device.getUrl
 
 @BindingAdapter("resource")
@@ -35,4 +36,11 @@ fun setThumbnail(imageView: ImageView, thumbnail: Thumbnail, cropToCircle: Boole
             }
         }
     }
+}
+
+@BindingAdapter("texts")
+fun setTexts(textListView: SimpleTextListView, texts: Resource<List<String>>?) {
+    if(texts !is Resource.Success || texts.value.isNullOrEmpty()) return
+
+    textListView.texts = texts.value
 }
