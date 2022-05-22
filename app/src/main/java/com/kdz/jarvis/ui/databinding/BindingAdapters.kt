@@ -11,8 +11,14 @@ import com.kdz.jarvis.R
 import com.kdz.jarvis.network.models.Thumbnail
 import com.kdz.jarvis.repositories.result.Resource
 import com.kdz.jarvis.ui.common.LoadingView
+import com.kdz.jarvis.ui.common.ResourceStateViewContainer
 import com.kdz.jarvis.ui.common.SimpleTextListView
 import com.kdz.jarvis.ui.device.getUrl
+
+@BindingAdapter("resource")
+fun setResource(container: ResourceStateViewContainer, resource: Resource<Any>) {
+    container.resource = resource
+}
 
 @BindingAdapter("resource")
 fun setLoading(loadingView: LoadingView, resource: Resource<Any>) {

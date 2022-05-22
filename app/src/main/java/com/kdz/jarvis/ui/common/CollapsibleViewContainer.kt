@@ -33,7 +33,7 @@ class CollapsibleViewContainer
 
     private val titleTextView: TextView
     private val collapseIndicatorImageView: ImageView
-    private val containerConstriantLayout: ConstraintLayout
+    private val containerConstraintLayout: ConstraintLayout
 
     var isExpanded = false
 
@@ -42,7 +42,7 @@ class CollapsibleViewContainer
 
         titleTextView = findViewById(R.id.textView_title)
         collapseIndicatorImageView = findViewById(R.id.imageView_collapse_indicator)
-        containerConstriantLayout = findViewById(R.id.constraintLayout_container)
+        containerConstraintLayout = findViewById(R.id.constraintLayout_container)
 
         obtainAttributes(attrs)
 
@@ -78,7 +78,7 @@ class CollapsibleViewContainer
         if (IGNORED_VIEW_IDS.contains(childId)) {
             super.addView(child, index, params)
         } else {
-            containerConstriantLayout.addView(child, index, params)
+            containerConstraintLayout.addView(child, index, params)
         }
     }
 
@@ -102,7 +102,7 @@ class CollapsibleViewContainer
 
             TransitionManager.beginDelayedTransition(parent as ViewGroup, transitionSet)
         }
-        containerConstriantLayout.isGone = !isExpanded
+        containerConstraintLayout.isGone = !isExpanded
 
         this.isExpanded = isExpanded
     }

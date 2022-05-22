@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <dimen name="margin_xs">5dp</dimen>
+    <dimen name="margin_s">10dp</dimen>
+    <dimen name="margin_m">15dp</dimen>
+    <dimen name="margin_l">20dp</dimen>
+    <dimen name="margin_xl">30dp</dimen>
+    <dimen name="margin_xxl">30dp</dimen>
+
     <dimen name="thumbnail_width">50dp</dimen>
     <dimen name="thumbnail_height">@dimen/thumbnail_width</dimen>
 
     <dimen name="character_list_item_padding">12dp</dimen>
     <dimen name="character_name_start_margin">12dp</dimen>
     <dimen name="text_spacing_vertical">12dp</dimen>
+    <dimen name="loading_view_default_dimension">60dp</dimen>
+
+    <dimen name="character_details_page_padding">30dp</dimen>
 </resources>
