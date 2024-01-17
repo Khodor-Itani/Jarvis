@@ -16,8 +16,13 @@ android {
         versionCode 1
         versionName "1.0"
 
-        buildConfigField "String", "MARVEL_API_PUBLIC_KEY", '"9e277fbe77d1a2bbf56cfece8544ac74"'
-        buildConfigField "String", "MARVEL_API_PRIVATE_KEY", '"3d78eada789f5adb7bf091a9d39f4d8797a1b6b0"'
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+        def pubKey = properties.getProperty('keys.public')
+        def privKey = properties.getProperty('keys.private')
+
+        buildConfigField "String", "MARVEL_API_PUBLIC_KEY", "\"$pubKey\""
+        buildConfigField "String", "MARVEL_API_PRIVATE_KEY", "\"$privKey\""
     }
 
     buildTypes {
@@ -81,4 +86,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_ktx_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_ktx_version"
     implementation "androidx.fragment:fragment-ktx:$fragment_ktx_version"
+
+    testImplementation "junit:junit:$jUnitVersion"
+
+    androidTestImplementation "androidx.test:runner:$androidXTestRunnerVersion"
+    androidTestImplementation "androidx.test:rules:$androidXTestRulesVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidXJUnitExtVersion"
 }
